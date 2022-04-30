@@ -1,8 +1,18 @@
 <?php
 
-// comment out the following two lines when deployed to production
-defined('YII_DEBUG') or define('YII_DEBUG', true);
-defined('YII_ENV') or define('YII_ENV', 'dev');
+date_default_timezone_set("Europe/Minsk");
+
+defined('DEV_MODE') or define('DEV_MODE', true);
+
+if (DEV_MODE === true):
+    error_reporting(E_ALL);
+    defined('YII_DEBUG') or define('YII_DEBUG', true);
+    defined('YII_ENV') or define('YII_ENV', 'dev');
+else:
+    error_reporting(0);
+    defined('YII_DEBUG') or define('YII_DEBUG', false);
+    defined('YII_ENV') or define('YII_ENV', 'prod');
+endif;
 
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
